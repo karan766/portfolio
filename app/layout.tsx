@@ -16,6 +16,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://karansinghsodhi.vercel.app'),
   title: "Karan Singh Sodhi - Software Engineer | Full Stack Developer",
   description: "Entry-level Software Engineer with hands-on experience in MERN stack, Next.js, and real-time web applications. Experienced with AWS, Docker, and CI/CD. Available for internships and full-time opportunities.",
   keywords: ["Software Engineer", "Full Stack Developer", "MERN Stack", "Next.js", "React", "Node.js", "MongoDB", "AWS", "Docker", "Portfolio"],

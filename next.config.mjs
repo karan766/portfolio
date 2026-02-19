@@ -1,10 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Performance optimizations
-  experimental: {
-    optimizeCss: true,
-  },
-  
   // Image optimization
   images: {
     formats: ['image/webp', 'image/avif'],
@@ -41,17 +36,6 @@ const nextConfig = {
       },
     ];
   },
-
-  // Bundle analyzer (uncomment for analysis)
-  // webpack: (config, { isServer }) => {
-  //   if (!isServer) {
-  //     config.resolve.fallback = {
-  //       ...config.resolve.fallback,
-  //       fs: false,
-  //     };
-  //   }
-  //   return config;
-  // },
 };
 
 export default nextConfig;
