@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <linearGradient id="cert3-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A0A23"/>
+      <stop offset="100%" style="stop-color:#1B1B32"/>
+    </linearGradient>
+  </defs>
+  <!-- freeCodeCamp certificate -->
+  <rect x="2" y="4" width="20" height="16" rx="2" fill="url(#cert3-gradient)"/>
+  <rect x="3" y="5" width="18" height="14" rx="1" fill="white"/>
+  
+  <!-- freeCodeCamp fire logo -->
+  <path d="M12 6c-1 0-2 1-2 2 0 1 1 2 2 2s2-1 2-2c0-1-1-2-2-2z" fill="#FF8C00"/>
+  <path d="M10 10c0 1 1 2 2 2s2-1 2-2" fill="#FF8C00"/>
+  <path d="M11 12c0 0.5 0.5 1 1 1s1-0.5 1-1" fill="#FF8C00"/>
+  
+  <!-- AWS cloud symbols -->
+  <rect x="6" y="14" width="3" height="2" rx="0.5" fill="#FF9900"/>
+  <path d="M7.5 13.5c-0.5 0-1 0.5-1 1h2c0-0.5-0.5-1-1-1z" fill="#FF9900"/>
+  
+  <rect x="15" y="14" width="3" height="2" rx="0.5" fill="#FF9900"/>
+  <path d="M16.5 13.5c-0.5 0-1 0.5-1 1h2c0-0.5-0.5-1-1-1z" fill="#FF9900"/>
+  
+  <!-- Certificate badge -->
+  <circle cx="19" cy="7" r="1.5" fill="#00D4AA"/>
+  <path d="M18.5 7l0.5 0.5 0.5-0.5-0.5-0.5z" fill="white"/>
+</svg>
