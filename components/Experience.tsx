@@ -1,6 +1,7 @@
 import React from "react";
 import { workExperience } from "@/data";
 import { Button } from "./ui/MovingBorders";
+import Image from "next/image";
 
 const Experience = () => {
   return (
@@ -29,10 +30,12 @@ const Experience = () => {
             >
               <div className="flex flex-col p-4 sm:p-6 md:p-8 lg:p-10 gap-3 sm:gap-4">
                 <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
-                  <img
+                  <Image
                     src={card.thumbnail}
                     alt={card.title}
-                    className="w-10 sm:w-12 md:w-14 lg:w-16 flex-shrink-0"
+                    width={64}
+                    height={64}
+                    className="flex-shrink-0"
                   />
                   <div className="flex-1 min-w-0">
                     <h1 className="text-start text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white leading-tight">

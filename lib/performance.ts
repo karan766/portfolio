@@ -1,5 +1,10 @@
 // Web Vitals tracking
-export function reportWebVitals(metric: any) {
+export function reportWebVitals(metric: {
+  name: string;
+  id: string;
+  value: number;
+  [key: string]: unknown;
+}) {
   // Log to console in development
   if (process.env.NODE_ENV === 'development') {
     console.log(metric);
@@ -39,7 +44,8 @@ export function observePerformance() {
     const fidObserver = new PerformanceObserver((list) => {
       const entries = list.getEntries();
       entries.forEach((entry) => {
-        console.log('FID:', entry.processingStart - entry.startTime);
+        const fidEntry = entry as PerformanceEventTiming;
+        console.log('FID:', fidEntry.processingStart - fidEntry.startTime);
       });
     });
 

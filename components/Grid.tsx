@@ -126,7 +126,7 @@ const Grid = () => {
               Ready to Build Something Amazing?
             </h3>
             <p className="text-white-200 mb-4 sm:mb-6 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed px-2 sm:px-0">
-              I'm actively seeking internship and full-time opportunities where I can contribute 
+              I&apos;m actively seeking internship and full-time opportunities where I can contribute 
               to innovative projects and continue growing as a software engineer.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">

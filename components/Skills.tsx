@@ -3,6 +3,7 @@
 import React from "react";
 import { skills } from "@/data";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 // Animation variants for smoother transitions
 const containerVariants = {
@@ -65,7 +66,7 @@ const iconVariants = {
   },
 };
 
-const SkillItem = ({ skill, index }: { skill: any; index: number }) => {
+const SkillItem = ({ skill }: { skill: { name: string; icon: string } }) => {
   return (
     <motion.div
       variants={skillItemVariants}
@@ -81,7 +82,7 @@ const SkillItem = ({ skill, index }: { skill: any; index: number }) => {
         whileHover="hover"
         className="flex-shrink-0"
       >
-        <img src={skill.icon} alt={skill.name} className="w-6 h-6 transition-all duration-300" />
+        <Image src={skill.icon} alt={skill.name} width={24} height={24} className="transition-all duration-300" />
       </motion.div>
       <span className="text-white font-medium group-hover:text-purple transition-colors duration-300">
         {skill.name}
@@ -90,7 +91,7 @@ const SkillItem = ({ skill, index }: { skill: any; index: number }) => {
   );
 };
 
-const SkillCategory = ({ title, skillList, delay = 0 }: { title: string; skillList: any[]; delay?: number }) => {
+const SkillCategory = ({ title, skillList, delay = 0 }: { title: string; skillList: { name: string; icon: string }[]; delay?: number }) => {
   const skillsContainerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -130,8 +131,8 @@ const SkillCategory = ({ title, skillList, delay = 0 }: { title: string; skillLi
         viewport={{ once: true, margin: "-50px" }}
         className="grid gap-3"
       >
-        {skillList.map((skill, index) => (
-          <SkillItem key={skill.name} skill={skill} index={index} />
+        {skillList.map((skill) => (
+          <SkillItem key={skill.name} skill={skill} />
         ))}
       </motion.div>
     </motion.div>

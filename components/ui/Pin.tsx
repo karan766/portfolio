@@ -7,8 +7,6 @@ import { cn } from "@/lib/utils";
 
 export const PinContainer = ({
   children,
-  title,
-  href,
   githubLink,
   liveLink,
   className,
@@ -58,14 +56,12 @@ export const PinContainer = ({
           <div className={cn(" relative z-50 ", className)}>{children}</div>
         </div>
       </div>
-      <PinPerspective title={title} href={href} githubLink={githubLink} liveLink={liveLink} />
+      <PinPerspective githubLink={githubLink} liveLink={liveLink} />
     </div>
   );
 };
 
 export const PinPerspective = ({
-  title,
-  href,
   githubLink,
   liveLink,
 }: {

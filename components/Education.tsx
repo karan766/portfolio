@@ -4,6 +4,7 @@ import React from "react";
 import { education, certifications } from "@/data";
 import { motion } from "framer-motion";
 import { FaGraduationCap, FaCertificate, FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
+import Image from "next/image";
 
 const Education = () => {
   return (
@@ -85,7 +86,7 @@ const Education = () => {
                   className="border border-white/[0.1] rounded-lg p-3 sm:p-4 hover:border-purple/30 transition-all duration-300"
                 >
                   <div className="flex items-start gap-2 sm:gap-3">
-                    <img src={cert.icon} alt={cert.name} className="w-6 sm:w-7 md:w-8 h-6 sm:h-7 md:h-8 mt-0.5 sm:mt-1 flex-shrink-0" />
+                    <Image src={cert.icon} alt={cert.name} width={32} height={32} className="mt-0.5 sm:mt-1 flex-shrink-0" />
                     <div className="flex-1 min-w-0">
                       <h4 className="text-white font-semibold mb-1 text-sm sm:text-base leading-tight">{cert.name}</h4>
                       <p className="text-purple text-xs sm:text-sm mb-1">{cert.issuer}</p>

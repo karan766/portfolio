@@ -3,6 +3,7 @@ import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { socialMedia, personalInfo } from "@/data";
 import MagicButton from "./ui/MagicButton";
 import GridGlobe from "./ui/GridGlobe";
+import Image from "next/image";
 
 const Footer = () => {
   return (
@@ -18,7 +19,7 @@ const Footer = () => {
             life?
           </h1>
           <p className="text-white-200 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            Let's collaborate on your next project! I'm experienced in building
+            Let&apos;s collaborate on your next project! I&apos;m experienced in building
             scalable, production-ready applications with modern technologies.
           </p>
         </div>
@@ -73,7 +74,7 @@ const Footer = () => {
             <div className="text-center sm:text-left">
               <a href="mailto:karansodhi703@gmail.com">
                 <MagicButton
-                  title="Let's get in touch"
+                  title="Let&apos;s get in touch"
                   icon={<FaLocationArrow />}
                   position="right"
                 />
@@ -112,7 +113,7 @@ const Footer = () => {
                   className="w-9 h-9 sm:w-10 sm:h-10 cursor-pointer flex justify-center items-center bg-black-200/50 backdrop-blur-sm border border-white/[0.1] rounded-lg hover:border-purple/50 hover:bg-purple/10 transition-all duration-300 group"
                   title={info.name}
                 >
-                  <img
+                  <Image
                     src={info.img}
                     alt={info.name}
                     width={18}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { FaExclamationTriangle, FaRefresh } from 'react-icons/fa'
+import { FaExclamationTriangle, FaRedo } from 'react-icons/fa'
 
 export default function GlobalError({ 
   error, 
@@ -40,7 +40,7 @@ export default function GlobalError({
               onClick={reset}
               className="inline-flex items-center gap-2 bg-purple hover:bg-purple/80 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-300"
             >
-              <FaRefresh className="text-sm" />
+              <FaRedo className="text-sm" />
               Try Again
             </button>
           </div>

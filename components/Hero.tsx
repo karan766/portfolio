@@ -149,7 +149,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 1.0 }}
             className="flex justify-center mb-6 sm:mb-8"
           >
-            <a href="/resume.pdf" download>
+            <a href="finalresume.pdf" download>
               <MagicButton
                 title="Download Resume"
                 icon={<FaLocationArrow />}
