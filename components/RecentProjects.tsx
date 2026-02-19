@@ -2,6 +2,7 @@
 
 import { projects } from "@/data";
 import { PinContainer } from "./ui/Pin";
+import Image from "next/image";
 
 const RecentProjects = () => {
   return (
@@ -29,16 +30,18 @@ const RecentProjects = () => {
                   <div
                     className="relative w-full h-full overflow-hidden rounded-2xl bg-gradient-to-br from-[#13162D] to-[#1a1d3a]"
                   >
-                    <img 
+                    <Image 
                       src="/bg.png" 
                       alt="background" 
-                      className="w-full h-full object-cover opacity-50" 
+                      fill
+                      className="object-cover opacity-50" 
                     />
                   </div>
-                  <img
+                  <Image
                     src={item.img}
                     alt={`${item.title} preview`}
-                    className="z-10 absolute inset-0 w-full h-full object-contain p-4"
+                    fill
+                    className="z-10 object-contain p-4"
                   />
                 </div>
 
@@ -63,8 +66,8 @@ const RecentProjects = () => {
                 <div className="mb-3 sm:mb-4">
                   <h4 className="text-white font-semibold text-xs sm:text-sm mb-1 sm:mb-2">Key Features:</h4>
                   <ul className="text-xs text-white-200 space-y-0.5 sm:space-y-1">
-                    {item.features.slice(0, 2).map((feature, index) => (
-                      <li key={index} className="flex items-start gap-1">
+                    {item.features.slice(0, 2).map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-start gap-1">
                         <span className="text-purple mt-0.5 sm:mt-1 flex-shrink-0">•</span>
                         <span className="leading-tight">{feature}</span>
                       </li>
@@ -75,15 +78,15 @@ const RecentProjects = () => {
                 {/* Tech Stack Icons */}
                 <div className="flex items-center justify-center mt-4 sm:mt-6 md:mt-7 mb-2 sm:mb-3">
                   <div className="flex items-center">
-                    {item.iconLists.map((icon, index) => (
+                    {item.iconLists.map((icon, iconIndex) => (
                       <div
-                        key={index}
+                        key={iconIndex}
                         className="border border-white/[.2] rounded-full bg-black w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 flex justify-center items-center"
                         style={{
-                          transform: `translateX(-${3 * index + 1}px)`,
+                          transform: `translateX(-${3 * iconIndex + 1}px)`,
                         }}
                       >
-                        <img src={icon} alt="icon" className="p-1 sm:p-2" />
+                        <Image src={icon} alt="icon" width={24} height={24} className="p-1 sm:p-2" />
                       </div>
                     ))}
                   </div>
