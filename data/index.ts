@@ -1,6 +1,5 @@
 export const navItems = [
   { name: "About", link: "#about" },
-  { name: "Experience", link: "#experience" },
   { name: "Projects", link: "#projects" },
   { name: "Skills", link: "#skills" },
   { name: "Contact", link: "#contact" },
@@ -103,39 +102,6 @@ export const projects = [
       "7x content throughput improvement",
       "Structured JSON templates",
       "Custom template marketplace",
-    ],
-  },
-];
-
-export const workExperience = [
-  {
-    id: 1,
-    title: "Web Developer Intern",
-    company: "V NSPIRE - Agra, India",
-    desc: "Shipped a production-ready MERN app with authentication, posting, and feed workflows, handling 50+ user-generated posts. Delivered real-time messaging using Socket.IO, supporting 10+ concurrent users with low-latency updates.",
-    className: "md:col-span-2",
-    thumbnail: "/exp1.svg",
-    duration: "2024",
-    achievements: [
-      "Modeled and optimized MongoDB collections scaling to 1,000+ records",
-      "Designed and exposed 10+ REST APIs with validation and error handling",
-      "Secured backend services using JWT-based auth and role checks",
-      "Improved UI responsiveness and data flow for efficient client-server communication",
-    ],
-  },
-  {
-    id: 2,
-    title: "Software Engineer Intern",
-    company: "NITI - Agra, India",
-    desc: "Implemented a robust JWT authentication system supporting secure, scalable user access patterns. Improved component performance by 44% through state management and algorithmic optimization.",
-    className: "md:col-span-2",
-    thumbnail: "/exp2.svg",
-    duration: "2025",
-    achievements: [
-      "Reduced frontend latency by 32% via workflow restructuring",
-      "Implemented unit and integration tests ensuring reliability",
-      "Delivered features predictably through sprint-based execution",
-      "Collaborated with designers and peers in short iteration cycles",
     ],
   },
 ];

@@ -5,86 +5,31 @@ import { skills } from "@/data";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-// Animation variants for smoother transitions
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const categoryVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 60,
-    scale: 0.8,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      type: "spring",
-      damping: 25,
-      stiffness: 120,
-      duration: 0.8,
-    },
-  },
-};
-
-const skillItemVariants = {
-  hidden: { 
-    opacity: 0, 
-    x: -30,
-    scale: 0.9,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    scale: 1,
-    transition: {
-      type: "spring",
-      damping: 20,
-      stiffness: 100,
-    },
-  },
-};
-
-const iconVariants = {
-  hover: {
-    scale: 1.2,
-    rotate: 5,
-    transition: {
-      type: "spring",
-      damping: 15,
-      stiffness: 300,
-    },
-  },
-};
-
 const SkillItem = ({ skill }: { skill: { name: string; icon: string } }) => {
   return (
     <motion.div
-      variants={skillItemVariants}
+      initial={{ opacity: 0.8, x: -10 }} // Start with some opacity
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+      viewport={{ once: true }}
       whileHover={{ 
         scale: 1.02,
         backgroundColor: "rgba(255, 255, 255, 0.1)",
         transition: { duration: 0.2 }
       }}
-      className="flex items-center gap-3 p-3 rounded-lg bg-black-200/50 hover:bg-black-200/80 transition-all duration-300 cursor-pointer group"
+      className="flex items-center gap-3 p-3 rounded-lg bg-black-200/50 hover:bg-black-200/80 transition-smooth cursor-pointer group"
     >
       <motion.div
-        variants={iconVariants}
-        whileHover="hover"
+        whileHover={{ 
+          scale: 1.1,
+          rotate: 3,
+          transition: { duration: 0.2 }
+        }}
         className="flex-shrink-0"
       >
-        <Image src={skill.icon} alt={skill.name} width={24} height={24} className="transition-all duration-300" />
+        <Image src={skill.icon} alt={skill.name} width={24} height={24} className="transition-smooth" />
       </motion.div>
-      <span className="text-white font-medium group-hover:text-purple transition-colors duration-300">
+      <span className="text-white font-medium group-hover:text-purple transition-smooth">
         {skill.name}
       </span>
     </motion.div>
@@ -92,139 +37,121 @@ const SkillItem = ({ skill }: { skill: { name: string; icon: string } }) => {
 };
 
 const SkillCategory = ({ title, skillList, delay = 0 }: { title: string; skillList: { name: string; icon: string }[]; delay?: number }) => {
-  const skillsContainerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
   return (
     <motion.div
-      variants={categoryVariants}
-      whileHover={{ 
-        y: -5,
-        transition: { duration: 0.3, ease: "easeOut" }
+      initial={{ 
+        opacity: 0.8, // Start with some opacity
+        y: 30,
+        scale: 0.95,
       }}
-      className="bg-black-100 p-6 rounded-xl border border-white/[0.1] hover:border-purple/50 transition-all duration-500 hover:shadow-lg hover:shadow-purple/20"
+      whileInView={{ 
+        opacity: 1,
+        y: 0,
+        scale: 1,
+      }}
+      transition={{ 
+        duration: 0.6,
+        delay: delay * 0.1, // Reduced delay multiplier
+        ease: [0.4, 0, 0.2, 1]
+      }}
+      viewport={{ once: true, margin: "-50px" }}
+      whileHover={{ 
+        y: -3, // Reduced hover movement
+        transition: { duration: 0.2 }
+      }}
+      className="bg-black-100 p-6 rounded-xl border border-white/[0.1] hover:border-purple/50 transition-smooth hover:shadow-lg hover:shadow-purple/20"
     >
       <motion.h3 
-        initial={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0.8, y: -10 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ 
-          delay: delay + 0.2,
-          duration: 0.6,
-          ease: "easeOut"
+          delay: delay * 0.1 + 0.1,
+          duration: 0.4,
+          ease: [0.4, 0, 0.2, 1]
         }}
+        viewport={{ once: true }}
         className="text-xl font-bold text-white mb-6 text-center"
       >
         {title}
       </motion.h3>
-      <motion.div 
-        variants={skillsContainerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-50px" }}
-        className="grid gap-3"
-      >
-        {skillList.map((skill) => (
-          <SkillItem key={skill.name} skill={skill} />
+      <div className="grid gap-3">
+        {skillList.map((skill, index) => (
+          <motion.div
+            key={skill.name}
+            initial={{ opacity: 0.7 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ 
+              delay: delay * 0.1 + 0.2 + index * 0.03, // Very small stagger
+              duration: 0.3
+            }}
+            viewport={{ once: true }}
+          >
+            <SkillItem skill={skill} />
+          </motion.div>
         ))}
-      </motion.div>
+      </div>
     </motion.div>
   );
 };
 
 const Skills = () => {
-  const headerVariants = {
-    hidden: { opacity: 0, y: -30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  const descriptionVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        delay: 0.2,
-        ease: "easeOut",
-      },
-    },
-  };
-
   return (
     <section className="py-20 px-4" id="skills">
       <div className="max-w-7xl mx-auto">
         <motion.h1 
-          variants={headerVariants}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0.9, y: -20 }} // Start with high opacity
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
           viewport={{ once: true }}
           className="heading mb-4"
         >
           Technical <span className="text-purple">Skills</span>
         </motion.h1>
         <motion.p 
-          variants={descriptionVariants}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0.8, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
           viewport={{ once: true }}
           className="text-white-200 text-center mb-12 max-w-2xl mx-auto"
         >
           Comprehensive expertise across the full development stack with hands-on experience in production environments
         </motion.p>
         
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+        <div 
           className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8"
+          style={{ minHeight: '500px' }} // Prevent layout shift
         >
           <SkillCategory 
             title="Languages" 
             skillList={skills.languages} 
-            delay={0.1}
+            delay={0}
           />
           <SkillCategory 
             title="Frontend" 
             skillList={skills.frontend} 
-            delay={0.2}
+            delay={1}
           />
           <SkillCategory 
             title="Backend" 
             skillList={skills.backend} 
-            delay={0.3}
+            delay={2}
           />
           <SkillCategory 
             title="Databases" 
             skillList={skills.databases} 
-            delay={0.4}
+            delay={3}
           />
           <SkillCategory 
             title="Cloud & DevOps" 
             skillList={skills.cloud} 
-            delay={0.5}
+            delay={4}
           />
           <SkillCategory 
             title="Tools" 
             skillList={skills.tools} 
-            delay={0.6}
+            delay={5}
           />
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -7,7 +7,6 @@ import { navItems } from "@/data";
 // Lazy load heavy components
 const RecentProjects = lazy(() => import("@/components/RecentProjects"));
 const Skills = lazy(() => import("@/components/Skills"));
-const Experience = lazy(() => import("@/components/Experience"));
 const Education = lazy(() => import("@/components/Education"));
 const Approach = lazy(() => import("@/components/Approach"));
 const Footer = lazy(() => import("@/components/Footer"));
@@ -32,10 +31,6 @@ export default function Home() {
         <FloatingNav navItems={navItems} />
         <Hero />
         <Grid />
-        
-        <Suspense fallback={<SectionLoader />}>
-          <Experience />
-        </Suspense>
         
         <Suspense fallback={<SectionLoader />}>
           <RecentProjects />

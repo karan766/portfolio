@@ -43,63 +43,88 @@ const Hero = () => {
         <div className="absolute pointer-events-none inset-0 dark:bg-black-100 bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
       </div>
 
-      {/* Floating Elements - Responsive */}
+      {/* Enhanced Floating Elements - Responsive */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           animate={{
-            y: [0, -20, 0],
-            rotate: [0, 5, 0],
+            y: [-15, 15, -15],
+            rotate: [0, 3, 0, -3, 0],
           }}
           transition={{
-            duration: 6,
+            duration: 12,
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute top-10 sm:top-20 left-5 sm:left-10 w-12 sm:w-16 md:w-20 h-12 sm:h-16 md:h-20 bg-purple/10 rounded-full blur-xl"
+          className="absolute top-10 sm:top-20 left-5 sm:left-10 w-12 sm:w-16 md:w-20 h-12 sm:h-16 md:h-20 bg-purple/10 rounded-full blur-xl will-change-transform"
         />
         <motion.div
           animate={{
-            y: [0, 20, 0],
-            rotate: [0, -5, 0],
+            y: [15, -15, 15],
+            rotate: [0, -3, 0, 3, 0],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 3,
+          }}
+          className="absolute top-20 sm:top-40 right-10 sm:right-20 w-20 sm:w-24 md:w-32 h-20 sm:h-24 md:h-32 bg-blue-500/10 rounded-full blur-xl will-change-transform"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.1, 1],
+            opacity: [0.4, 0.7, 0.4],
           }}
           transition={{
             duration: 8,
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute top-20 sm:top-40 right-10 sm:right-20 w-20 sm:w-24 md:w-32 h-20 sm:h-24 md:h-32 bg-blue-500/10 rounded-full blur-xl"
+          className="absolute bottom-20 left-1/4 w-16 sm:w-20 h-16 sm:h-20 bg-cyan-500/10 rounded-full blur-xl will-change-transform"
         />
       </div>
 
       {/* Main Content */}
-      <motion.div
+      <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+        transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
         className="flex justify-center relative mt-4 sm:mt-6 md:mt-8 z-10 px-3 sm:px-5 md:px-8 lg:px-10"
+        style={{ minHeight: '60vh' }}
       >
         <div className="w-full max-w-sm sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl flex flex-col items-center justify-center px-4 sm:px-0">
           {/* Status Badge */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            initial={{ opacity: 0, y: 20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
             className="mb-6 sm:mb-8"
           >
-            <div className="flex items-center gap-2 bg-black-200/50 backdrop-blur-sm border border-white/[0.1] rounded-full px-3 sm:px-4 md:px-6 py-2 sm:py-3">
-              <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-green-500 rounded-full animate-pulse"></div>
+            <motion.div 
+              whileHover={{ 
+                scale: 1.05,
+                boxShadow: "0 0 30px rgba(203, 172, 249, 0.3)",
+              }}
+              transition={{ duration: 0.3 }}
+              className="flex items-center gap-2 bg-black-200/50 backdrop-blur-sm border border-white/[0.1] rounded-full px-3 sm:px-4 md:px-6 py-2 sm:py-3 transition-smooth hover-glow"
+            >
+              <motion.div 
+                animate={{ scale: [1, 1.15, 1] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-green-500 rounded-full"
+              />
               <p className="uppercase tracking-widest text-[10px] sm:text-xs text-center text-blue-100 leading-tight">
                 <span className="hidden sm:inline">Available for Opportunities • Full-Stack Developer</span>
                 <span className="sm:hidden">Available • Full-Stack Dev</span>
               </p>
-            </div>
+            </motion.div>
           </motion.div>
           
           {/* Main Title */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
           >
             <TextGenerateEffect
               words={`Hi! I'm ${personalInfo.name}`}
@@ -109,53 +134,93 @@ const Hero = () => {
 
           {/* Subtitle */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            initial={{ opacity: 0, y: 20, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: [0.4, 0, 0.2, 1] }}
             className="text-center mb-6 sm:mb-8"
           >
-            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-white mb-3 sm:mb-4 md:mb-6 leading-tight">
+            <motion.h2 
+              whileInView={{
+                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+              }}
+              transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+              className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-white mb-3 sm:mb-4 md:mb-6 leading-tight"
+            >
               Building the Future with <span className="text-purple">Code</span>
-            </h2>
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white-200 max-w-xs sm:max-w-2xl md:max-w-3xl mx-auto leading-relaxed px-2 sm:px-0">
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1, duration: 0.8 }}
+              className="text-sm sm:text-base md:text-lg lg:text-xl text-white-200 max-w-xs sm:max-w-2xl md:max-w-3xl mx-auto leading-relaxed px-2 sm:px-0"
+            >
               Transforming ideas into scalable, production-ready applications using modern technologies. 
               Passionate about creating seamless user experiences and robust backend systems.
-            </p>
+            </motion.p>
           </motion.div>
 
           {/* Enhanced Key Stats */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.8, ease: [0.4, 0, 0.2, 1] }}
             className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-8 sm:mb-10 md:mb-12 w-full max-w-xs sm:max-w-2xl md:max-w-4xl"
           >
-            {statsData.map((stat) => (
+            {statsData.map((stat, index) => (
               <motion.div
                 key={stat.label}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="bg-black-200/30 backdrop-blur-sm border border-white/[0.1] rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 text-center hover:border-purple/50 transition-all duration-300"
+                initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: 1 + index * 0.1, 
+                  ease: [0.4, 0, 0.2, 1] 
+                }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  y: -5,
+                  boxShadow: "0 10px 30px rgba(203, 172, 249, 0.2)",
+                  transition: { duration: 0.3 }
+                }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-black-200/30 backdrop-blur-sm border border-white/[0.1] rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 text-center hover:border-purple/50 transition-smooth cursor-pointer group will-change-transform"
               >
-                <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-purple mb-1">{stat.number}</div>
-                <div className="text-xs sm:text-sm text-white-200 leading-tight">{stat.label}</div>
+                <motion.div 
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 1.4 + index * 0.1, type: "spring", stiffness: 150, damping: 15 }}
+                  className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-purple mb-1 group-hover:scale-110 transition-smooth"
+                >
+                  {stat.number}
+                </motion.div>
+                <div className="text-xs sm:text-sm text-white-200 leading-tight group-hover:text-white transition-smooth">
+                  {stat.label}
+                </div>
               </motion.div>
             ))}
           </motion.div>
 
           {/* Download Resume Button */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.0 }}
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, delay: 1.2, ease: [0.4, 0, 0.2, 1] }}
             className="flex justify-center mb-6 sm:mb-8"
           >
-            <a href="finalresume.pdf" download>
+            <motion.a 
+              href="finalresume.pdf" 
+              download
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              className="will-change-transform"
+            >
               <MagicButton
                 title="Download Resume"
                 icon={<FaLocationArrow />}
                 position="right"
               />
-            </a>
+            </motion.a>
           </motion.div>
         </div>
       </motion.div>

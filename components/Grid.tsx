@@ -55,51 +55,96 @@ const Grid = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0.9, y: -15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+          viewport={{ once: true, margin: "-50px" }}
           className="text-center mb-8 sm:mb-12 md:mb-16"
         >
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6">
             About <span className="text-purple">Me</span>
           </h1>
           <div className="max-w-4xl mx-auto px-2 sm:px-0">
-            <p className="text-white-200 text-sm sm:text-base md:text-lg leading-relaxed mb-6 sm:mb-8">
+            <motion.p 
+              initial={{ opacity: 0.8 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.1, duration: 0.4 }}
+              viewport={{ once: true }}
+              className="text-white-200 text-sm sm:text-base md:text-lg leading-relaxed mb-6 sm:mb-8"
+            >
               {personalInfo.summary}
-            </p>
+            </motion.p>
             <div className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6 text-xs sm:text-sm">
-              <div className="flex items-center gap-2">
-                <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-purple rounded-full"></span>
-                <span className="text-white-200">B.Tech Computer Science Engineering</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-purple rounded-full"></span>
-                <span className="text-white-200">MERN Stack Certified</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-purple rounded-full"></span>
-                <span className="text-white-200">AWS Cloud Practitioner</span>
-              </div>
+              {[
+                "B.Tech Computer Science Engineering",
+                "MERN Stack Certified", 
+                "AWS Cloud Practitioner"
+              ].map((item, index) => (
+                <motion.div
+                  key={item}
+                  initial={{ opacity: 0.8, scale: 0.98 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ 
+                    delay: 0.2 + index * 0.05,
+                    duration: 0.4,
+                    ease: [0.4, 0, 0.2, 1]
+                  }}
+                  viewport={{ once: true }}
+                  whileHover={{ scale: 1.02 }}
+                  className="flex items-center gap-2 transition-smooth"
+                >
+                  <span className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-purple rounded-full animate-pulse-glow" />
+                  <span className="text-white-200">{item}</span>
+                </motion.div>
+              ))}
             </div>
           </div>
         </motion.div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
+          style={{ minHeight: '400px' }}
+        >
           {aboutCards.map((card, index) => (
             <motion.div
               key={card.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-black-100 p-4 sm:p-6 rounded-xl border border-white/[0.1] hover:border-purple/50 transition-all duration-300 group"
+              initial={{ 
+                opacity: 0.8,
+                y: 20,
+                scale: 0.98,
+              }}
+              whileInView={{ 
+                opacity: 1, 
+                y: 0,
+                scale: 1,
+              }}
+              transition={{ 
+                duration: 0.5,
+                delay: index * 0.05,
+                ease: [0.4, 0, 0.2, 1]
+              }}
+              viewport={{ once: true, margin: "-50px" }}
+              whileHover={{ 
+                scale: 1.02,
+                y: -5,
+                transition: { duration: 0.2 }
+              }}
+              className="bg-black-100 p-4 sm:p-6 rounded-xl border border-white/[0.1] hover:border-purple/50 transition-smooth group cursor-pointer"
             >
               <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
-                <div className="p-2 sm:p-3 bg-purple/10 rounded-lg group-hover:bg-purple/20 transition-colors duration-300 flex-shrink-0">
+                <motion.div 
+                  whileHover={{ 
+                    scale: 1.05,
+                    rotate: 2,
+                  }}
+                  transition={{ duration: 0.2 }}
+                  className="p-2 sm:p-3 bg-purple/10 rounded-lg group-hover:bg-purple/20 transition-smooth flex-shrink-0"
+                >
                   <FaCode className="text-purple text-xl sm:text-2xl md:text-3xl" />
-                </div>
+                </motion.div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-white font-semibold text-base sm:text-lg mb-1 sm:mb-2 group-hover:text-purple transition-colors duration-300 leading-tight">
+                  <h3 className="text-white font-semibold text-base sm:text-lg mb-1 sm:mb-2 group-hover:text-purple transition-smooth leading-tight">
                     {card.title}
                   </h3>
                   <div className="text-purple text-xs sm:text-sm font-medium mb-1 sm:mb-2">
@@ -107,7 +152,7 @@ const Grid = () => {
                   </div>
                 </div>
               </div>
-              <p className="text-white-200 text-xs sm:text-sm leading-relaxed">
+              <p className="text-white-200 text-xs sm:text-sm leading-relaxed group-hover:text-white transition-smooth">
                 {card.description}
               </p>
             </motion.div>
@@ -116,12 +161,19 @@ const Grid = () => {
 
         {/* Call to Action */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0.8, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+          viewport={{ once: true, margin: "-50px" }}
           className="text-center mt-8 sm:mt-12 md:mt-16"
         >
-          <div className="bg-gradient-to-r from-purple/10 to-blue-500/10 p-4 sm:p-6 md:p-8 rounded-2xl border border-purple/20">
+          <motion.div 
+            whileHover={{ 
+              scale: 1.01,
+              transition: { duration: 0.2 }
+            }}
+            className="bg-gradient-to-r from-purple/10 to-blue-500/10 p-4 sm:p-6 md:p-8 rounded-2xl border border-purple/20 hover:border-purple/40 transition-smooth"
+          >
             <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3 sm:mb-4">
               Ready to Build Something Amazing?
             </h3>
@@ -130,20 +182,29 @@ const Grid = () => {
               to innovative projects and continue growing as a software engineer.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
-              <a
+              <motion.a
                 href="#contact"
-                className="bg-purple hover:bg-purple/80 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-colors duration-300 text-sm sm:text-base"
+                whileHover={{ scale: 1.02, y: -1 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.2 }}
+                className="bg-purple hover:bg-purple/80 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-smooth text-sm sm:text-base"
               >
                 Get In Touch
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="#projects"
-                className="border border-purple text-purple hover:bg-purple hover:text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-all duration-300 text-sm sm:text-base"
+                whileHover={{ 
+                  scale: 1.02, 
+                  y: -1,
+                }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.2 }}
+                className="border border-purple text-purple hover:bg-purple hover:text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-smooth text-sm sm:text-base"
               >
                 View Projects
-              </a>
+              </motion.a>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

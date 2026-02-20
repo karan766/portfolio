@@ -3,33 +3,53 @@
 import { projects } from "@/data";
 import { PinContainer } from "./ui/Pin";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const RecentProjects = () => {
   return (
     <div className="py-10 sm:py-16 md:py-20 px-3 sm:px-4 md:px-6" id="projects">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white text-center mb-3 sm:mb-4">
-          Featured <span className="text-purple">Projects</span>
-        </h1>
-        <p className="text-white-200 text-center mb-8 sm:mb-10 md:mb-12 max-w-2xl mx-auto text-sm sm:text-base md:text-lg px-2 sm:px-0">
-          Production-ready applications showcasing full-stack development, real-time features, and scalable architecture
-        </p>
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+          viewport={{ once: true }}
+        >
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white text-center mb-3 sm:mb-4">
+            Featured <span className="text-purple">Projects</span>
+          </h1>
+          <p className="text-white-200 text-center mb-8 sm:mb-10 md:mb-12 max-w-2xl mx-auto text-sm sm:text-base md:text-lg px-2 sm:px-0">
+            Production-ready applications showcasing full-stack development, real-time features, and scalable architecture
+          </p>
+        </motion.div>
         
         <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12 md:gap-16 mt-6 sm:mt-8 md:mt-10">
-          {projects.map((item) => (
-            <div
-              className="lg:min-h-[32.5rem] h-[28rem] sm:h-[30rem] md:h-[32rem] flex items-center justify-center w-[90vw] sm:w-[85vw] md:w-96"
+          {projects.map((item, index) => (
+            <motion.div
               key={item.id}
+              initial={{ opacity: 0, y: 80, scale: 0.8 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ 
+                duration: 0.8, 
+                delay: index * 0.2,
+                ease: [0.4, 0, 0.2, 1] 
+              }}
+              viewport={{ once: true }}
+              whileHover={{ 
+                scale: 1.02,
+                transition: { duration: 0.3 }
+              }}
+              className="lg:min-h-[32.5rem] h-[28rem] sm:h-[30rem] md:h-[32rem] flex items-center justify-center w-[90vw] sm:w-[85vw] md:w-96"
             >
               <PinContainer 
                 title="View Project" 
                 githubLink={item.githubLink}
                 liveLink={item.liveLink}
               >
-                <div className="relative flex items-center justify-center w-[90vw] sm:w-[85vw] md:w-96 overflow-hidden h-[20vh] sm:h-[22vh] md:h-[25vh] lg:h-[30vh] mb-6 sm:mb-8 md:mb-10 rounded-2xl">
-                  <div
-                    className="relative w-full h-full overflow-hidden rounded-2xl bg-gradient-to-br from-[#13162D] to-[#1a1d3a]"
-                  >
+                <div 
+                  className="relative flex items-center justify-center w-[90vw] sm:w-[85vw] md:w-96 overflow-hidden h-[20vh] sm:h-[22vh] md:h-[25vh] lg:h-[30vh] mb-6 sm:mb-8 md:mb-10 rounded-2xl"
+                >
+                  <div className="relative w-full h-full overflow-hidden rounded-2xl bg-gradient-to-br from-[#13162D] to-[#1a1d3a]">
                     <Image 
                       src="/bg.png" 
                       alt="background" 
@@ -41,11 +61,11 @@ const RecentProjects = () => {
                     src={item.img}
                     alt={`${item.title} preview`}
                     fill
-                    className="z-10 object-contain p-4"
+                    className="absolute inset-0 z-10 object-contain p-4"
                   />
                 </div>
 
-                <h1 className="font-bold text-sm sm:text-base md:text-xl lg:text-2xl line-clamp-1 mb-2">
+                <h1 className="font-bold text-sm sm:text-base md:text-xl lg:text-2xl line-clamp-1 mb-2 hover:text-purple transition-smooth">
                   {item.title}
                 </h1>
 
@@ -67,7 +87,10 @@ const RecentProjects = () => {
                   <h4 className="text-white font-semibold text-xs sm:text-sm mb-1 sm:mb-2">Key Features:</h4>
                   <ul className="text-xs text-white-200 space-y-0.5 sm:space-y-1">
                     {item.features.slice(0, 2).map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start gap-1">
+                      <li 
+                        key={featureIndex} 
+                        className="flex items-start gap-1 hover:translate-x-1 transition-smooth"
+                      >
                         <span className="text-purple mt-0.5 sm:mt-1 flex-shrink-0">•</span>
                         <span className="leading-tight">{feature}</span>
                       </li>
@@ -81,7 +104,7 @@ const RecentProjects = () => {
                     {item.iconLists.map((icon, iconIndex) => (
                       <div
                         key={iconIndex}
-                        className="border border-white/[.2] rounded-full bg-black w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 flex justify-center items-center"
+                        className="border border-white/[.2] rounded-full bg-black w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 flex justify-center items-center transition-smooth hover:scale-110 hover:-translate-y-1"
                         style={{
                           transform: `translateX(-${3 * iconIndex + 1}px)`,
                         }}
@@ -92,7 +115,7 @@ const RecentProjects = () => {
                   </div>
                 </div>
               </PinContainer>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

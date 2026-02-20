@@ -56,10 +56,25 @@
   
   body {
     @apply bg-background text-foreground;
+    /* Prevent flash of unstyled content */
+    visibility: visible;
+    opacity: 1;
   }
   
   button {
     @apply active:outline-none;
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
@@ -68,7 +83,17 @@
     @apply font-bold text-4xl md:text-5xl text-center;
   }
 
-  .black-gradient {
-    background: linear-gradient(90deg, #161a31 0%, #06091f 100%);
+  /* Essential transition utilities */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-glow {
+    @apply transition-smooth hover:shadow-lg hover:shadow-purple/20;
+  }
+
+  /* Performance optimizations */
+  .will-change-transform {
+    will-change: transform;
   }
 }
