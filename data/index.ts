@@ -23,7 +23,7 @@ export const projects = [
     githubLink: "https://github.com/karan766/discord-clone",
     downloadLink:
       "https://github.com/karan766/discord-clone/archive/refs/heads/main.zip",
-    tech: "Socket.IO, LiveKit, Next.js 15, Docker",
+    tech: "Socket.IO, LiveKit, Next.js 15",
     features: [
       "Real-time messaging with 10+ concurrent users",
       "Voice/video system with low-latency collaboration",
@@ -71,7 +71,7 @@ export const projects = [
       "/jwt.svg",
       "/socketio.svg",
     ],
-    liveLink: "",
+    liveLink: "https://linknest-3uq7.onrender.com/",
     githubLink: "https://github.com/karan766/LinkNest-Intenship-project-",
     downloadLink:
       "https://github.com/karan766/LinkNest-Intenship-project-/archive/refs/heads/main.zip",
