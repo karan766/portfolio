@@ -208,7 +208,7 @@ const Hero = () => {
             className="flex justify-center mb-6 sm:mb-8"
           >
             <motion.a 
-              href="KaranResume(2).pdf" 
+              href="resume.pdf" 
               download
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
