@@ -142,7 +142,6 @@ const Hero = () => {
               />
             </div>
           </motion.div>
-          </motion.div>
 
           {/* Subtitle */}
           <motion.div
