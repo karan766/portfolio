@@ -125,11 +125,23 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
+            className="w-full text-center"
           >
-            <TextGenerateEffect
-              words={`Hi! I'm ${personalInfo.name}`}
-              className="text-center text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight"
-            />
+            {/* Mobile: first name only */}
+            <div className="sm:hidden">
+              <TextGenerateEffect
+                words="Hi! I'm Karan"
+                className="text-center text-2xl font-bold mb-4 leading-tight"
+              />
+            </div>
+            {/* Desktop: full name */}
+            <div className="hidden sm:block">
+              <TextGenerateEffect
+                words={`Hi! I'm ${personalInfo.name}`}
+                className="text-center sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight"
+              />
+            </div>
+          </motion.div>
           </motion.div>
 
           {/* Subtitle */}
